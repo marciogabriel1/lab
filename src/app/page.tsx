@@ -1,9 +1,10 @@
+import { Flex, Text, Button } from '@radix-ui/themes';
 
-
-export default function Home() {
+export default function MyApp() {
   return (
-    <div>
-      
-    </div>
+    <Flex direction="row" justify={'center'} align={'center'} height={'100vh'} gap="2">
+      <Text>Hello from Radix Themes :)</Text>
+      <Button>Let's go</Button>
+    </Flex>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Theme } from "@radix-ui/themes";
 
 import '@radix-ui/themes/styles.css';
 
@@ -24,7 +25,9 @@ export default function RootLayout({
         height: '100vh',
         boxSizing: 'border-box'
       }}>
-        {children}
+        <Theme appearance="dark">
+          {children}
+        </Theme>
       </body>
     </html>
   );
