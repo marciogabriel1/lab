@@ -1,14 +1,30 @@
-'use cliet'
+"use client"
 
-import { DoubleArrowLeftIcon, DoubleArrowRightIcon, EnvelopeClosedIcon, EyeClosedIcon, LockClosedIcon } from '@radix-ui/react-icons';
-import { Flex, Text, Button, Card, Box, Grid, Container, TextField, IconButton} from '@radix-ui/themes';
-import { useState } from 'react';
+import { DoubleArrowLeftIcon, DoubleArrowRightIcon, EnvelopeClosedIcon, EyeClosedIcon, EyeOpenIcon, LockClosedIcon } from '@radix-ui/react-icons';
+import { Flex, Text, Button, Card, Box, TextField, IconButton} from '@radix-ui/themes';
+import React from 'react';
+import { useState, useEffect} from 'react';
 
 
 export default function MyApp() {
 
+  const [opened, setOpened] = useState(false);
+
+  function anyClick() {
+    setOpened(!opened);
+
+    useEffect(() => {
+      if (opened) {
+        const timer = setTimeout(() => {
+          setOpened(false);
+        }, 1000);
   
-  const [opened, setOpened] = useState('initialOpened');
+        return () => clearTimeout(timer);
+      }
+    }, [opened]);
+
+    return <div />
+  }
 
 
   return (
@@ -32,8 +48,8 @@ export default function MyApp() {
       <Text size={'3'}>Senha:</Text>
       <TextField.Root color='blue' radius='large' placeholder="Senha">
         <TextField.Slot side='right'>
-          <IconButton variant='ghost'>
-            <EyeClosedIcon />
+          <IconButton variant='ghost' onClick={anyClick}>
+            { opened ? <EyeClosedIcon /> : < EyeOpenIcon />}
           </IconButton>
         </TextField.Slot>
 
