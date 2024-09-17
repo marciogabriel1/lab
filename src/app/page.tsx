@@ -3,7 +3,7 @@
 import { DoubleArrowLeftIcon, DoubleArrowRightIcon, EnvelopeClosedIcon, EyeClosedIcon, EyeOpenIcon, LockClosedIcon } from '@radix-ui/react-icons';
 import { Flex, Text, Button, Card, Box, TextField, IconButton} from '@radix-ui/themes';
 import React from 'react';
-import { useState, useEffect} from 'react';
+import { useState } from 'react';
 
 
 export default function MyApp() {
@@ -12,20 +12,7 @@ export default function MyApp() {
 
   function anyClick() {
     setOpened(!opened);
-
-    useEffect(() => {
-      if (opened) {
-        const timer = setTimeout(() => {
-          setOpened(false);
-        }, 1000);
-  
-        return () => clearTimeout(timer);
-      }
-    }, [opened]);
-
-    return <div />
   }
-
 
   return (
   <Flex direction="column" justify={'center'} align={'center'} height={'100vh'} gap="2">
@@ -46,10 +33,15 @@ export default function MyApp() {
 
 
       <Text size={'3'}>Senha:</Text>
-      <TextField.Root color='blue' radius='large' placeholder="Senha">
+      <TextField.Root
+        color='blue'
+        radius='large'
+        placeholder="Senha"
+        type={ opened ? 'text' : 'password'}
+      >
         <TextField.Slot side='right'>
           <IconButton variant='ghost' onClick={anyClick}>
-            { opened ? <EyeClosedIcon /> : < EyeOpenIcon />}
+            { opened ? < EyeOpenIcon /> : <EyeClosedIcon />}
           </IconButton>
         </TextField.Slot>
 
